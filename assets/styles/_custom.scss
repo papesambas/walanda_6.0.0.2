@@ -1,0 +1,58 @@
+$primary: darken(#243c6e, 20%);
+$danger: darken(#ff4141, 20%);
+
+/* Classe pour le taux "mauvais" (rouge) */
+.mauvais {
+    color: red;
+}
+
+/* Classe pour le taux "faible" (orange) */
+.faible {
+    color: orange;
+}
+
+/* Classe pour le taux "moyen" (jaune) */
+.moyen {
+    color: yellow;
+}
+
+/* Classe pour le taux "acceptable" (bleu ciel) */
+.acceptable {
+    color: lightblue;
+}
+
+/* Classe pour le taux "bon" (vert clair) */
+.bon {
+    color: lightgreen;
+}
+
+/* Classe pour le taux "excellent" (vert foncé) */
+.excellent {
+    color: green;
+}
+/*Styliser les tables*/
+/* styles.css */
+/* Styles pour toutes les tables */
+.table {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border-collapse: collapse; /* Fusionner les bordures des cellules */
+    width: 100%; /* Définir la largeur de la table */
+}
+
+/* Styles pour les lignes de la table */
+.table tr {
+    height: 14px;
+}
+
+/* Styles pour les cellules d'en-tête */
+.table th, .table td {
+    padding: 8px; /* Espacement du contenu à l'intérieur des cellules */
+    border: 1px solid #ccc; /* Bordures de la cellule */
+}
+
+/* Styles pour l'entête de la table */
+.table thead th {
+    background-color: #dddddd !important;
+}
+

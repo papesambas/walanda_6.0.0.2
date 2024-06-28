@@ -1,0 +1,18 @@
+//body {
+//    background-color: skyblue;
+//}
+
+// import custom
+@import "custom";
+@import "formulaire";
+// Import all of Bootstrap's CSS
+@import '../../vendor/twbs/bootstrap/scss/bootstrap.scss';
+
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+//@import '../vendor/fontawesome/fontawesome.index.js';
+
+/*$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';*/
