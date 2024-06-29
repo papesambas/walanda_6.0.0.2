@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FraisType{% endblock %}
+
+{% block body %}
+    <h1>FraisType</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ frais_type.id }}</td>
+            </tr>
+            <tr>
+                <th>Periode</th>
+                <td>{{ frais_type.periode }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ frais_type.createdAt ? frais_type.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ frais_type.updatedAt ? frais_type.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_frais_type_index') }}">back to list</a>
+
+    <a href="{{ path('app_frais_type_edit', {'id': frais_type.id}) }}">edit</a>
+
+    {{ include('frais_type/_delete_form.html.twig') }}
+{% endblock %}

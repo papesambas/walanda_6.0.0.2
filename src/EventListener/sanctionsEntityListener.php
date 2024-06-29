@@ -2,11 +2,12 @@
 
 namespace App\EventListener;
 
+use LogicException;
 use App\Entity\Cercles;
 use App\Entity\Sanctions;
-use LogicException;
-use Doctrine\ORM\Event\LifecycleEventArgs;
+//use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Bundle\SecurityBundle\Security;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class sanctionsEntityListener

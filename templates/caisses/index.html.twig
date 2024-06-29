@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Caisses index{% endblock %}
+
+{% block body %}
+    <h1>Caisses index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateOp</th>
+                <th>Libelle</th>
+                <th>Debit</th>
+                <th>Credit</th>
+                <th>Solde</th>
+                <th>SoldeCumul</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>Slug</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for caiss in caisses %}
+            <tr>
+                <td>{{ caiss.id }}</td>
+                <td>{{ caiss.dateOp ? caiss.dateOp|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ caiss.libelle }}</td>
+                <td>{{ caiss.debit }}</td>
+                <td>{{ caiss.credit }}</td>
+                <td>{{ caiss.solde }}</td>
+                <td>{{ caiss.soldeCumul }}</td>
+                <td>{{ caiss.createdAt ? caiss.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ caiss.updatedAt ? caiss.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ caiss.slug }}</td>
+                <td>
+                    <a href="{{ path('app_caisses_show', {'id': caiss.id}) }}">show</a>
+                    <a href="{{ path('app_caisses_edit', {'id': caiss.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_caisses_new') }}">Create new</a>
+{% endblock %}

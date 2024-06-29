@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Echeances index{% endblock %}
+
+{% block body %}
+    <h1>Echeances index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Echeance</th>
+                <th>Periode</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for echeance in echeances %}
+            <tr>
+                <td>{{ echeance.id }}</td>
+                <td>{{ echeance.echeance ? echeance.echeance|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ echeance.periode }}</td>
+                <td>{{ echeance.createdAt ? echeance.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ echeance.updatedAt ? echeance.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_echeances_show', {'id': echeance.id}) }}">show</a>
+                    <a href="{{ path('app_echeances_edit', {'id': echeance.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_echeances_new') }}">Create new</a>
+{% endblock %}

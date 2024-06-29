@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Echeances{% endblock %}
+
+{% block body %}
+    <h1>Echeances</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ echeance.id }}</td>
+            </tr>
+            <tr>
+                <th>Echeance</th>
+                <td>{{ echeance.echeance ? echeance.echeance|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Periode</th>
+                <td>{{ echeance.periode }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ echeance.createdAt ? echeance.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ echeance.updatedAt ? echeance.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_echeances_index') }}">back to list</a>
+
+    <a href="{{ path('app_echeances_edit', {'id': echeance.id}) }}">edit</a>
+
+    {{ include('echeances/_delete_form.html.twig') }}
+{% endblock %}

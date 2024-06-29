@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DossierEleves index{% endblock %}
+
+{% block body %}
+    <h1>DossierEleves index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Designation</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>Slug</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dossier_elefe in dossier_eleves %}
+            <tr>
+                <td>{{ dossier_elefe.id }}</td>
+                <td>{{ dossier_elefe.designation }}</td>
+                <td>{{ dossier_elefe.createdAt ? dossier_elefe.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ dossier_elefe.updatedAt ? dossier_elefe.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ dossier_elefe.slug }}</td>
+                <td>
+                    <a href="{{ path('app_dossier_eleves_show', {'id': dossier_elefe.id}) }}">show</a>
+                    <a href="{{ path('app_dossier_eleves_edit', {'id': dossier_elefe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_dossier_eleves_new') }}">Create new</a>
+{% endblock %}

@@ -3,10 +3,11 @@
 namespace App\EventListener;
 
 use LogicException;
-use App\Entity\Scolarites2;
 use App\Entity\Statuts;
-use Doctrine\ORM\Event\LifecycleEventArgs;
+use App\Entity\Scolarites2;
+//use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Bundle\SecurityBundle\Security;
+use Doctrine\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 class scolarites2EntityListener

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DossierEleves{% endblock %}
+
+{% block body %}
+    <h1>DossierEleves</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dossier_elefe.id }}</td>
+            </tr>
+            <tr>
+                <th>Designation</th>
+                <td>{{ dossier_elefe.designation }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ dossier_elefe.createdAt ? dossier_elefe.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ dossier_elefe.updatedAt ? dossier_elefe.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ dossier_elefe.slug }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_dossier_eleves_index') }}">back to list</a>
+
+    <a href="{{ path('app_dossier_eleves_edit', {'id': dossier_elefe.id}) }}">edit</a>
+
+    {{ include('dossier_eleves/_delete_form.html.twig') }}
+{% endblock %}

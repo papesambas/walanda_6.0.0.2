@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FraisScolarites index{% endblock %}
+
+{% block body %}
+    <h1>FraisScolarites index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Montant</th>
+                <th>Arrieres</th>
+                <th>Inscription</th>
+                <th>Carnet</th>
+                <th>Transfert</th>
+                <th>Septembre</th>
+                <th>Octobre</th>
+                <th>Novembre</th>
+                <th>Decembre</th>
+                <th>Janvier</th>
+                <th>Fevrier</th>
+                <th>Mars</th>
+                <th>Avril</th>
+                <th>Mai</th>
+                <th>Juin</th>
+                <th>Autre</th>
+                <th>EcheanceTransfert</th>
+                <th>EcheanceCarnet</th>
+                <th>EcheanceInscription</th>
+                <th>EcheancesArrieres</th>
+                <th>EcheanceSeptembre</th>
+                <th>EcheanceOctobre</th>
+                <th>EcheanceNovembre</th>
+                <th>EcheanceDecembre</th>
+                <th>EcheanceJanvier</th>
+                <th>EcheanceFevrier</th>
+                <th>EcheanceMars</th>
+                <th>EcheanceAvril</th>
+                <th>EcheanceMai</th>
+                <th>EcheanceJuin</th>
+                <th>EcheanceAutre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for frais_scolarite in frais_scolarites %}
+            <tr>
+                <td>{{ frais_scolarite.id }}</td>
+                <td>{{ frais_scolarite.montant }}</td>
+                <td>{{ frais_scolarite.arrieres }}</td>
+                <td>{{ frais_scolarite.inscription }}</td>
+                <td>{{ frais_scolarite.carnet }}</td>
+                <td>{{ frais_scolarite.transfert }}</td>
+                <td>{{ frais_scolarite.septembre }}</td>
+                <td>{{ frais_scolarite.octobre }}</td>
+                <td>{{ frais_scolarite.novembre }}</td>
+                <td>{{ frais_scolarite.decembre }}</td>
+                <td>{{ frais_scolarite.janvier }}</td>
+                <td>{{ frais_scolarite.fevrier }}</td>
+                <td>{{ frais_scolarite.mars }}</td>
+                <td>{{ frais_scolarite.avril }}</td>
+                <td>{{ frais_scolarite.mai }}</td>
+                <td>{{ frais_scolarite.juin }}</td>
+                <td>{{ frais_scolarite.autre }}</td>
+                <td>{{ frais_scolarite.echeanceTransfert ? frais_scolarite.echeanceTransfert|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceCarnet ? frais_scolarite.echeanceCarnet|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceInscription ? frais_scolarite.echeanceInscription|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeancesArrieres ? frais_scolarite.echeancesArrieres|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceSeptembre ? frais_scolarite.echeanceSeptembre|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceOctobre ? frais_scolarite.echeanceOctobre|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceNovembre ? frais_scolarite.echeanceNovembre|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceDecembre ? frais_scolarite.echeanceDecembre|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceJanvier ? frais_scolarite.echeanceJanvier|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceFevrier ? frais_scolarite.echeanceFevrier|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceMars ? frais_scolarite.echeanceMars|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceAvril ? frais_scolarite.echeanceAvril|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceMai ? frais_scolarite.echeanceMai|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceJuin ? frais_scolarite.echeanceJuin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ frais_scolarite.echeanceAutre ? frais_scolarite.echeanceAutre|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_frais_scolarites_show', {'id': frais_scolarite.id}) }}">show</a>
+                    <a href="{{ path('app_frais_scolarites_edit', {'id': frais_scolarite.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="33">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_frais_scolarites_new') }}">Create new</a>
+{% endblock %}

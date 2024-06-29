@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DetailsCaisses index{% endblock %}
+
+{% block body %}
+    <h1>DetailsCaisses index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateOp</th>
+                <th>Designation</th>
+                <th>Montant</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>Slug</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for details_caiss in details_caisses %}
+            <tr>
+                <td>{{ details_caiss.id }}</td>
+                <td>{{ details_caiss.dateOp ? details_caiss.dateOp|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ details_caiss.designation }}</td>
+                <td>{{ details_caiss.montant }}</td>
+                <td>{{ details_caiss.createdAt ? details_caiss.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ details_caiss.updatedAt ? details_caiss.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ details_caiss.slug }}</td>
+                <td>
+                    <a href="{{ path('app_details_caisses_show', {'id': details_caiss.id}) }}">show</a>
+                    <a href="{{ path('app_details_caisses_edit', {'id': details_caiss.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_details_caisses_new') }}">Create new</a>
+{% endblock %}
