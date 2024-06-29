@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: UsersRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
@@ -57,6 +59,22 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Eleves $eleves = null;
+
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: Caisses::class)]
+    private Collection $caisses;
+
+    #[ORM\OneToMany(mappedBy: 'author', targetEntity: DetailsCaisses::class)]
+    private Collection $detailsCaisses;
+
+    public function __construct()
+    {
+        $this->caisses = new ArrayCollection();
+        $this->detailsCaisses = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -221,4 +239,85 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->nom.' '.$this->prenom;
     }
 
+    public function getEleves(): ?Eleves
+    {
+        return $this->eleves;
+    }
+
+    public function setEleves(?Eleves $eleves): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($eleves === null && $this->eleves !== null) {
+            $this->eleves->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($eleves !== null && $eleves->getUser() !== $this) {
+            $eleves->setUser($this);
+        }
+
+        $this->eleves = $eleves;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Caisses>
+     */
+    public function getCaisses(): Collection
+    {
+        return $this->caisses;
+    }
+
+    public function addCaiss(Caisses $caiss): static
+    {
+        if (!$this->caisses->contains($caiss)) {
+            $this->caisses->add($caiss);
+            $caiss->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCaiss(Caisses $caiss): static
+    {
+        if ($this->caisses->removeElement($caiss)) {
+            // set the owning side to null (unless already changed)
+            if ($caiss->getAuthor() === $this) {
+                $caiss->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DetailsCaisses>
+     */
+    public function getDetailsCaisses(): Collection
+    {
+        return $this->detailsCaisses;
+    }
+
+    public function addDetailsCaiss(DetailsCaisses $detailsCaiss): static
+    {
+        if (!$this->detailsCaisses->contains($detailsCaiss)) {
+            $this->detailsCaisses->add($detailsCaiss);
+            $detailsCaiss->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailsCaiss(DetailsCaisses $detailsCaiss): static
+    {
+        if ($this->detailsCaisses->removeElement($detailsCaiss)) {
+            // set the owning side to null (unless already changed)
+            if ($detailsCaiss->getAuthor() === $this) {
+                $detailsCaiss->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
 }

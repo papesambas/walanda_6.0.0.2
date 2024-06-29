@@ -17,6 +17,8 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\Regex;
+use Symfony\Component\Validator\Constraints\PasswordStrength;
+use Symfony\Component\Validator\Constraints\NotCompromisedPassword;
 
 
 class RegistrationFormType extends AbstractType
@@ -103,7 +105,10 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => 'confirmer le mot de passe'],
                 'constraints' => [
                     new Regex('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,30}$/',
-                    "Il faut un mot de passe de 8 à 10 caractères avec un Majuscule, un minuscule, un chiffre et un caractère spécial")
+                    "Il faut un mot de passe de 8 à 10 caractères avec un Majuscule, un minuscule, un chiffre et un caractère spécial"),
+                    new PasswordStrength(),
+                    new NotCompromisedPassword(),
+
                 ],
             ]);
     }
